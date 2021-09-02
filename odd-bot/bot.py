@@ -30,6 +30,11 @@ async def on_message(message):
             if low > 500 or high > 500:
                 await message.channel.send("Please keep your numbers below 500.")
                 return
+            if low == high:
+                await message.channel.send(
+                    "Your lower and upper bounds must be different numbers."
+                )
+                return
         except:
             await message.channel.send("You can only give me valid integers...")
             return
