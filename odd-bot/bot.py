@@ -23,6 +23,7 @@ async def on_message(message):
         args = msg.split(" ")
         if len(args) < 3:
             await message.channel.send("You must give me two numbers...")
+            return
         try:
             low = int(args[1])
             high = int(args[2])
