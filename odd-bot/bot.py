@@ -24,12 +24,17 @@ async def on_message(message):
         try:
             low = int(args[1])
             high = int(args[2])
+            if low > 500 or high > 500:
+                await message.channel.send("Please keep your numbers below 500.")
+                return
         except:
             await message.channel.send("You can only give me valid integers...")
             return
 
         if low % 2 == 0:
             low += 1
+        if low > high:
+            low, high = high, low
 
         nums = gen_eoo(low, high)
         await message.channel.send(
