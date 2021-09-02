@@ -21,6 +21,8 @@ async def on_message(message):
 
     if msg.startswith("$eoo"):
         args = msg.split(" ")
+        if len(args) < 3:
+            await message.channel.send("You must give me two numbers...")
         try:
             low = int(args[1])
             high = int(args[2])
@@ -31,10 +33,10 @@ async def on_message(message):
             await message.channel.send("You can only give me valid integers...")
             return
 
-        if low % 2 == 0:
-            low += 1
         if low > high:
             low, high = high, low
+        if low % 2 == 0:
+            low += 1
 
         nums = gen_eoo(low, high)
         await message.channel.send(
